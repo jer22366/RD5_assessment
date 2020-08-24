@@ -17,9 +17,11 @@
 			$result = mysqli_query ( $link, $commandText );
 			$row = mysqli_fetch_assoc ( $result );
 			if($row["account"]!="" && $row["acpassword"]==$userpass){
+				
 				header("location: money.php");
 				$_SESSION["user"]=$username;
 				$_SESSION["pass"]=$userpass;
+				$_SESSION["idcnum"]=$row["idCnum"];
 			}
             
         }

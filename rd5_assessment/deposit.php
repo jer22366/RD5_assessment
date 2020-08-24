@@ -1,15 +1,26 @@
 <?php
+    require_once ("config.php");
+    session_start();
+    $idcnum=$_SESSION["idcnum"];
+    $name=$_SESSION["user"];
+    
+    if(isset($_POST["btnback"])){
+      header("location: money.php");
+    }
     if(isset($_POST["submit"])){
-       $depoist=$_POST["deposittext"];
-       if(is_numeric($depoist)){
+       $deposit=$_POST["deposittext"];
+       if(is_numeric($deposit)){
 
         $link=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(mysqli_connect_error());
         $result = mysqli_query ( $link, "set names utf8" );
         mysqli_select_db ( $link, $dbname );
+        $dpdate=date("Y-m-d");
+        
         $commandText = <<<sqlcommand
-        INSERT INTO `deposit`(`Mid`, `name`, `dpmoney`) VALUES ("N123456789","jeff",1000);
+        INSERT INTO `deposit`(`idCnum`, `name`, `dpmoney`,`dpdate`) VALUES ("$idcnum","$name",$deposit,"$dpdate");
         sqlcommand;
         $result = mysqli_query ( $link, $commandText );
+        header("location: money.php");
 
        }
        
@@ -28,7 +39,7 @@
         <div class="input-group-prepend">
           </div>
         </div> 
-        <input id="text" name="depositttext" type="text" class="form-control">
+        <input id="text" name="deposittext" type="text" class="form-control">
       </div>
     </div>
   </div> 
@@ -37,6 +48,7 @@
     <div class="offset-1 col-8">
       <button name="submit" type="submit" class="btn btn-primary">存入</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
+      <button name="btnback" type="submit" class="btn btn-primary">返回</button>
     </div>
   </div>
 </form>

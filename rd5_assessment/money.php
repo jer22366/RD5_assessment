@@ -28,10 +28,13 @@
                 <td align="center" valign="baseline">This page for member only.</td>
             </tr>
             <tr>
-                <td colspan="2" align="center" bgcolor="#CCCCCC"><input
-                    type="submit" name="btndeposit" id="btndeposit" value="存款" /> <input
-                    type="submit" name="btnWithdrawal" id="btnWithdrawal" value="提款" /> <input
-                    type="submit" name="btnlogout" id="btnlogout" value="登出" />
+                <td colspan="2" align="center" bgcolor="#CCCCCC">
+                    <input type="submit" name="btndeposit" id="btndeposit" value="存款" /> 
+                    <input type="submit" name="btnWithdrawal" id="btnWithdrawal" value="提款" /> 
+                    <input type="submit" name="btncheckmoney" id="btncheckmoney" value="查詢明細" />
+                    <input type="submit" name="btnleftmoney" id="btnleftmoney" value="餘額查詢" />
+                    <input type="submit" name="btnlogout" id="btnlogout" value="登出" />
+                    
                 </td>
             </tr>
             </table>
