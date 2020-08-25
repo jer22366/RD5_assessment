@@ -1,7 +1,7 @@
  <?php
     require_once ("config.php");
     session_start();
-    $idcnum=$_SESSION["idcnum"];
+    
     $name=$_SESSION["user"];
 
     if(isset($_POST["btnback"])){
@@ -18,7 +18,7 @@
             mysqli_select_db ( $link, $dbname );
             $wddate=date("Y-m-d");
             $commandText = <<<sqlcommand
-            INSERT INTO `withdrawal`(`idCnum`, `name`, `wdmoney`,`wddate`) VALUES ("$idcnum","$name",$withdrawal,"$wddate");
+            INSERT INTO `money`(`account`, `wdmoney`,`Ddate`) VALUES ("$name",$withdrawal,"$wddate");
             sqlcommand;
             $result = mysqli_query ( $link, $commandText );
             header("location: money.php");

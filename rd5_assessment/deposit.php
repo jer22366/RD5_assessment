@@ -1,7 +1,7 @@
 <?php
     require_once ("config.php");
     session_start();
-    $idcnum=$_SESSION["idcnum"];
+    
     $name=$_SESSION["user"];
     
     if(isset($_POST["btnback"])){
@@ -17,7 +17,7 @@
         $dpdate=date("Y-m-d");
         
         $commandText = <<<sqlcommand
-        INSERT INTO `deposit`(`idCnum`, `name`, `dpmoney`,`dpdate`) VALUES ("$idcnum","$name",$deposit,"$dpdate");
+        INSERT INTO `money`(`account`, `dpmoney`,`Ddate`) VALUES ("$name",$deposit,"$dpdate");
         sqlcommand;
         $result = mysqli_query ( $link, $commandText );
         header("location: money.php");
