@@ -10,9 +10,7 @@
     if(isset($_POST["btnWithdrawal"])){
         header("location: Withdrawal.php");
     }
-    if(true){
-        
-    }
+   
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,15 +32,10 @@
                 <td colspan="2" align="center" bgcolor="#CCCCCC">
                     <input type="submit" name="btndeposit" id="btndeposit" value="存款" /> 
                     <input type="submit" name="btnWithdrawal" id="btnWithdrawal" value="提款" /> 
-<<<<<<< HEAD
                     <input type="submit" name="btncheckmoney" id="btncheckmoney" value="查詢明細" />
                     <input type="submit" name="btnleftmoney" id="btnleftmoney" value="餘額查詢" />
                     <input type="submit" name="btnlogout" id="btnlogout" value="登出" />
                     
-=======
-                    <input type="submit" name="btnlogout" id="btnlogout" value="登出" />
-                    <input type="submit" name="btnlogout" id="btnlogout" value="登出" />
->>>>>>> e0fe0f2b8c7fecb8fe6e5526c9d9fbe87f76c6c4
                 </td>
             </tr>
             </table>

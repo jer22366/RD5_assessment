@@ -18,6 +18,9 @@
         }
         
     }
+    if(isset($_POST["btnback"])){
+      header("location: index.php");
+    }
     
 ?>
 
@@ -58,6 +61,7 @@
     <div class="offset-1 col-8">
       <button name="submit" type="submit" class="btn btn-primary">註冊</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
+      <button name="btnback" type="submit" class="btn btn-primary">返回</button>
     </div>
   </div>
 </form>
