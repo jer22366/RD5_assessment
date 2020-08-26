@@ -11,10 +11,10 @@
             $result = mysqli_query ( $link, "set names utf8" );
             mysqli_select_db ( $link, $dbname );
             $commandText = <<<sqlcommand
-                INSERT INTO `member`(`Mid`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
+                INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
             sqlcommand;
             $result = mysqli_query ( $link, $commandText );
-            
+            header("location: login.php");
         }
         
     }

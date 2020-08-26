@@ -1,2 +1,6 @@
 帳號可以全數字
 登入是用root帳號
+checkmymoney需要總額
+外觀美化
+checkBalance跟checkmymoney或許可以併在一起
+前後分離
