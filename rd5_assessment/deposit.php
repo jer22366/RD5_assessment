@@ -1,6 +1,6 @@
 <?php
     require_once ("config.php");
-    require_once ("checkBalance.php");
+    require_once ("Balance.php");
 
     session_start();
     $name=$_SESSION["user"];
@@ -37,23 +37,27 @@
     }
 
 ?>
-
+<script>
+    
+</script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <form id="form3" name="form3" method="post" action="deposit.php" >
   <div class="  form-group  d-flex flex-row justify-content-center align-items-center col-12" style="height: 100px;">
-    <label for="text" class="col-1 col-form-label col-2">存入金額</label> 
+    <label for="text" class=" col-form-label col-2">存入金額</label> 
     <div class="col-5">
         <input id="text" name="deposittext" type="text" class="form-control">
       </div>
     </div>
   </div> 
-  <div class="form-group d-flex flex-row justify-content-center align-items-center" style="height: 100px;">
-    <div class="offset-1 col-5">
+  <div class="form-group d-flex flex-row justify-content-center align-items-center" style="height: 70px;">
+    <div class="offset-1 col-4">
       <button name="submit" type="submit" class="btn btn-primary">存入</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
       <button name="btnback" type="submit" class="btn btn-primary">返回</button>
     </div>
   </div>
+  
 </form>
+

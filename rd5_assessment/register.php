@@ -15,6 +15,8 @@
             sqlcommand;
             $result = mysqli_query ( $link, $commandText );
             header("location: login.php");
+
+            
         }
         
     }

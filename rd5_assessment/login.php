@@ -37,15 +37,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lab - Login</title>
+<title>登入</title>
 </head>
 <body>
 	<form id="form1" name="form1" method="post" action="login.php">
-		<table width="300" border="0" align="center" cellpadding="5"
+		<table width="300" border="1" align="center" cellpadding="5"
 			cellspacing="0" bgcolor="#F2F2F2">
 			<tr>
 				<td colspan="2" align="center" bgcolor="#CCCCCC"><font
-					color="#FFFFFF">網銀系統 - 登入</font></td>
+					color="black">網銀銀行 - 登入</font></td>
 			</tr>
 			<tr>
 				<td width="80" align="center" valign="baseline">帳號</td>

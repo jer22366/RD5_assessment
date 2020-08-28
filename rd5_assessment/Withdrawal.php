@@ -1,6 +1,6 @@
  <?php
     require_once ("config.php");
-    require_once ("checkBalance.php");
+    require_once ("Balance.php");
     session_start();
     $name=$_SESSION["user"];
 
@@ -8,9 +8,17 @@
         header("location: money.php");
 
     }
+    
     if(isset($_POST["btnwithdrawal"])){
-        $withdrawal=$_POST["withdrawal"];
-        
+        if($_POST["radio"] && $_POST["radio"]==1000 && empty($_POST["withdrawal"])){
+            $withdrawal=$_POST["radio"];
+        }else if($_POST["radio"] && $_POST["radio"]==2000 && empty($_POST["withdrawal"])){
+            $withdrawal=$_POST["radio"];
+        }else if($_POST["radio"] && $_POST["radio"]==5000 && empty($_POST["withdrawal"])){
+            $withdrawal=$_POST["radio"];
+        }else{
+            $withdrawal=$_POST["withdrawal"];
+        }  
         if(is_numeric($withdrawal)){
             if($withdrawal<=30000 && $withdrawal>=1000){
                 if($Balance>$withdrawal){
@@ -43,8 +51,22 @@
             
         } 
     }
-        
+    
 ?>
+<script>
+    $(function(){
+	    $('input[type="radio"]').on('mousedown',function(evt){
+		    evt.preventDefault();
+		    this.checked=!this.checked;
+	    }).on('mouseup',function(evt){
+		    evt.preventDefault();
+	    }).on('click',function(evt){
+		    evt.preventDefault();
+	});
+});
+
+
+</script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -55,7 +77,21 @@
         <input id="text" name="withdrawal" type="text" class="form-control">
     </div>
 </div>
-</div> 
+</div>
+<div class=" d-flex flex-row justify-content-center align-items-center col-12">
+      <div class="custom-control custom-radio custom-control-inline col-2">
+        <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="1000"> 
+        <label for="radio_0" class="custom-control-label">1000元</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline col-2">
+        <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="2000"> 
+        <label for="radio_1" class="custom-control-label">2000元</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline col-2">
+        <input name="radio" id="radio_2" type="radio" class="custom-control-input" value="5000"> 
+        <label for="radio_2" class="custom-control-label">5000元</label>
+      </div>
+    </div> 
 <div class="form-group d-flex flex-row justify-content-center align-items-center" style="height: 100px;">
     <div class="offset-1 col-5">
     <button name="btnwithdrawal" type="submit" class="btn btn-primary">取出</button>
