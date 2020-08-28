@@ -4,13 +4,10 @@
     $idcnum=$_SESSION["idcnum"];
     $name=$_SESSION["user"];
 
-    $link=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(mysqli_connect_error());
-    $result = mysqli_query ( $link, "set names utf8" );
-    mysqli_select_db ( $link, $dbname );
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-      select num ,e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name"
+      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name" order by Ddate desc
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     if(isset($_POST["btnback"])){
@@ -35,7 +32,7 @@
 <div class="container"> 
 <form method="POST">
   <div class="form-inline col-12" >
-      <h2 class=col-10>提款記錄</h2>
+      <h2 class=col-10>帳戶記錄</h2>
   </div>
 </form>
   <table class="table table-hover">

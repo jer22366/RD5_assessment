@@ -14,8 +14,12 @@
         header("location: checkmymoney.php");
     }
     if(isset($_POST["btnbalance"])){
-        header("location: checkbalance.php");
+        header("location: checkBalance.php");
     }
+    require_once ("config.php");
+    require_once ("checkBalance.php");
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,14 +35,13 @@
                 <td align="center" bgcolor="#CCCCCC"><font color="#FFFFFF">會員系統 － 會員專用</font></td>
             </tr>
             <tr>
-                <td align="center" valign="baseline">This page for member only.</td>
+                <td align="center" valign="baseline">餘額:<?= $Balance ?></td>
             </tr>
             <tr>
                 <td colspan="2" align="center" bgcolor="#CCCCCC">
                     <input type="submit" name="btndeposit" id="btndeposit" value="存款" /> 
                     <input type="submit" name="btnWithdrawal" id="btnWithdrawal" value="提款" /> 
                     <input type="submit" name="btncheckmymoney" id="btncheckmymoney" value="查詢明細" />
-                    <input type="submit" name="btnbalance" id="btnbalance" value="餘額查詢" />
                     <input type="submit" name="btnlogout" id="btnlogout" value="登出" />
                     
                 </td>

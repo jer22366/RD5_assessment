@@ -10,25 +10,29 @@
     if(isset($_POST["submit"])){
        $deposit=$_POST["deposittext"];
        if(is_numeric($deposit)){
-
-        $link=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(mysqli_connect_error());
-        $result = mysqli_query ( $link, "set names utf8" );
-        mysqli_select_db ( $link, $dbname );
-
-        $getdate = <<<sqlcommand
+        if($deposit<=30000 && $deposit>=1000){
+          $getdate = <<<sqlcommand
           select now() as date;
-        sqlcommand;
-        $result = mysqli_query ( $link, $getdate );
-        $gdate= mysqli_fetch_assoc($result);
-        
-        $commandText = <<<sqlcommand
-          INSERT INTO `money`(`account`, `dpmoney`,`Ddate`) VALUES ("$name",$deposit,"$gdate[date]");
-        sqlcommand;
-        $result = mysqli_query ( $link, $commandText );
-        header("location: money.php");
-
-       }
-       
+          sqlcommand;
+          $result = mysqli_query ( $link, $getdate );
+          $gdate= mysqli_fetch_assoc($result);
+          
+          $commandText = <<<sqlcommand
+            INSERT INTO `money`(`account`, `dpmoney`,`Ddate`) VALUES ("$name",$deposit,"$gdate[date]");
+          sqlcommand;
+          $result = mysqli_query ( $link, $commandText );
+          header("location: money.php");
+        }else if($deposit>30000){?>
+          <script language="javascript">
+              alert("輸入的金額不可大於30000");
+          </script>
+        <?php }
+          else if($deposit<1000){?>
+          <script language="javascript">
+              alert("輸入的金額不可小於1000");
+          </script>
+        <?php }
+      }
     }
 
 ?>
