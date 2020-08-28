@@ -4,3 +4,37 @@ checkmymoney需要總額
 外觀美化
 checkBalance跟checkmymoney或許可以併在一起
 前後分離
+
+
+
+
+
+
+
+if(isset($_POST["submit"])){
+       $deposit=$_POST["deposittext"];
+       if(is_numeric($deposit)){
+        if($deposit<=30000 && $deposit>=1000){
+          $getdate = <<<sqlcommand
+            select now() as date;
+          sqlcommand;
+          $result = mysqli_query ( $link, $getdate );
+          $gdate= mysqli_fetch_assoc($result);
+          
+          $commandText = <<<sqlcommand
+            INSERT INTO `money`(`account`, `dpmoney`,`Ddate`,balance) VALUES ("$name",$deposit,"$gdate[date]",($balance+$deposit));
+          sqlcommand;
+          $result = mysqli_query ( $link, $commandText );
+          header("location: money.php");
+        }else if($deposit>30000){?>
+          <script language="javascript">
+              alert("輸入的金額不可大於30000");
+          </script>
+        <?php }
+          else if($deposit<1000){?>
+          <script language="javascript">
+              alert("輸入的金額不可小於1000");
+          </script>
+        <?php }
+      }
+    }

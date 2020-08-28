@@ -32,10 +32,20 @@
         <form id="form2" name="form2" method="post" action="money.php">
             <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
             <tr>
-                <td align="center" bgcolor="#CCCCCC"><font color="#FFFFFF">會員系統 － 會員專用</font></td>
+                <td align="center" bgcolor="#CCCCCC"><font color="#FFFFFF">網銀系統 － 會員專用</font></td>
             </tr>
             <tr>
-                <td align="center" valign="baseline">餘額:<?= $Balance ?></td>
+                <td align="center" valign="baseline">你的餘額:
+                <?php 
+                    if(isset($_POST["btnhide"])){
+                        echo "******";  ?>
+                        <input type="submit" name="btnshow" id="btndeposit" value="開啟" /></td>
+                   <?php }else{
+                       echo $Balance;
+                    ?>
+                        <input type="submit" name="btnhide" id="btndeposit" value="隱藏" /></td>
+                    <?php }?> 
+                
             </tr>
             <tr>
                 <td colspan="2" align="center" bgcolor="#CCCCCC">

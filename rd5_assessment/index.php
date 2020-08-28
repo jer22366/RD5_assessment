@@ -18,14 +18,14 @@
 
 <table width="300" border="0" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
   <tr>
-    <td align="center" bgcolor="#CCCCCC"><font color="#FFFFFF">會員系統 - 首頁</font></td>
+    <td align="center" bgcolor="#CCCCCC"><font color="#FFFFFF">網銀系統 - 首頁</font></td>
   </tr>
   <tr>
   <?php if($user=="guest"){?>
     <td align="center" valign="baseline"><a href="login.php">登入 </a>
     ｜<a href="register.php">註冊 </a>
   <?php }else {?>
-    <td align="center" valign="baseline"><a href="login.php?login=1">登出 </a>| <a href="money.php">會員專用頁</a></td>
+    <td align="center" valign="baseline"><a href="login.php?login=1">登出 </a>| <a href="money.php">會員資訊</a></td>
   <?php }?> 
     
   </tr>

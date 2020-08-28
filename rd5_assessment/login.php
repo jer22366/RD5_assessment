@@ -45,7 +45,7 @@
 			cellspacing="0" bgcolor="#F2F2F2">
 			<tr>
 				<td colspan="2" align="center" bgcolor="#CCCCCC"><font
-					color="#FFFFFF">會員系統 - 登入</font></td>
+					color="#FFFFFF">網銀系統 - 登入</font></td>
 			</tr>
 			<tr>
 				<td width="80" align="center" valign="baseline">帳號</td>

@@ -21,7 +21,7 @@
                     $gdate= mysqli_fetch_assoc($result);
                   
                     $commandText = <<<sqlcommand
-                        INSERT INTO `money`(`account`, `wdmoney`,`Ddate`) VALUES ("$name",$withdrawal,"$gdate[date]");
+                        INSERT INTO `money`(`account`, `wdmoney`,`Ddate`,`balance`) VALUES ("$name",$withdrawal,"$gdate[date]",($Balance-$withdrawal));
                     sqlcommand;
                     $result = mysqli_query ( $link, $commandText );
                     header("location: money.php");
@@ -49,20 +49,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <form id="form3" name="form3" method="post" action="Withdrawal.php">
-<div class="form-group row">
-    <label for="text" class="col-1 col-form-label">取出金額</label> 
-    <div class="col-4">
-    <div class="input-group">
-        <div class="input-group-prepend">
-        
-        </div>
-        </div> 
+<div class="form-group d-flex flex-row justify-content-center align-items-center col-12" style="height: 100px;">
+    <label for="text" class="col-1 col-form-label col-2">取出金額</label> 
+    <div class="col-5">
         <input id="text" name="withdrawal" type="text" class="form-control">
     </div>
-    </div>
+</div>
 </div> 
-<div class="form-group row">
-    <div class="offset-1 col-8">
+<div class="form-group d-flex flex-row justify-content-center align-items-center" style="height: 100px;">
+    <div class="offset-1 col-5">
     <button name="btnwithdrawal" type="submit" class="btn btn-primary">取出</button>
     <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
     <button name="btnback" type="submit" class="btn btn-primary">返回</button>

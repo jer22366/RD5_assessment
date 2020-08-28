@@ -5,7 +5,7 @@
     $name=$_SESSION["user"];
     
     $commandText = <<<sqlcommand
-    select num ,e.account, wdmoney,dpmoney from money e join member f on e.account=f.account where e.account="$name"
+    select e.account, wdmoney,dpmoney from money e join member f on e.account=f.account where e.account="$name"
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     
