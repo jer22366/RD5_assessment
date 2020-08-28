@@ -14,10 +14,15 @@
         $link=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(mysqli_connect_error());
         $result = mysqli_query ( $link, "set names utf8" );
         mysqli_select_db ( $link, $dbname );
-        $dpdate=date("Y-m-d");
+
+        $getdate = <<<sqlcommand
+          select now() as date;
+        sqlcommand;
+        $result = mysqli_query ( $link, $getdate );
+        $gdate= mysqli_fetch_assoc($result);
         
         $commandText = <<<sqlcommand
-        INSERT INTO `money`(`account`, `dpmoney`,`Ddate`) VALUES ("$name",$deposit,"$dpdate");
+          INSERT INTO `money`(`account`, `dpmoney`,`Ddate`) VALUES ("$name",$deposit,"$gdate[date]");
         sqlcommand;
         $result = mysqli_query ( $link, $commandText );
         header("location: money.php");
