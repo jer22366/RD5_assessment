@@ -1,46 +1,19 @@
 <?php 
-	require_once ("config.php");
-	
-    session_start();
-    if(isset($_POST["btnOK"])){
-        $username=$_POST["txtUserName"];
-        $userpass=$_POST["txtPassword"];
-        if(empty($username) || empty($userpass)){
-        }
-        else{
-			$commandText = <<<sqlcommand
-				select * from member where account="$username";
-			sqlcommand;
-			$result = mysqli_query ( $link, $commandText );
-			$row = mysqli_fetch_assoc ( $result );
-			if($row["account"]!="" && $row["acpassword"]==$userpass){
-				
-				header("location: index.php");
-				$_SESSION["user"]=$username;
-				$_SESSION["pass"]=$userpass;
-				$_SESSION["idcnum"]=$row["idCnum"];
-			}
-            
-        }
-        
-         
-    }
-    if(isset($_POST["btnHome"])){
-        header("location: index.php");
-    }
-    if(isset($_GET["login"])){
-        session_destroy();
-        header("location:index.php");
-    }
-
+	session_start();
+	if(isset($_GET["login"])){
+		session_destroy();	
+		header("location: index.php");
+	}
 ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <title>登入</title>
 </head>
 <body>
-	<form id="form1" name="form1" method="post" action="login.php">
+	<form id="form1" name="form1" method="post">
 		<table width="300" border="1" align="center" cellpadding="5"
 			cellspacing="0" bgcolor="#F2F2F2">
 			<tr>
@@ -61,10 +34,37 @@
 				<td colspan="2" align="center" bgcolor="#CCCCCC"><input
 					type="submit" name="btnOK" id="btnOK" value="登入" /> <input
 					type="reset" name="btnReset" id="btnReset" value="重設" /> <input
-					type="submit" name="btnHome" id="btnHome" value="回首頁" />
+					type="button" name="btnHome" id="btnHome" value="回首頁" />
 				</td>
 			</tr>
 		</table>
 	</form>
 </body>
+<script>
+	$(document).ready(function(){
+		$('#btnOK').click(function(){
+            let acc=$("#txtUserName").val()
+			let pass=$("#txtPassword").val()
+			if(!acc || !pass){
+				alert("帳號或密碼不能為空")
+			}else{
+				$.ajax({
+                	type:"POST",
+                    url:"moneyfunction.php",
+                    data:{
+                        "Accvalue":acc,
+						"Passvalue":pass
+                        }
+                    }).then(function(e){
+                        alert(e)
+						window.location.href="index.php"; 
+                    })   
+			}
+		})     
+		$('#btnHome').click(function(){    
+			window.location.href="index.php"; 
+		}) 
+    })	
+
+</script>
 </html>

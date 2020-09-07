@@ -15,6 +15,5 @@
         $Wmoney=$row["wdmoney"];
         $Balance+=$Dmoney-$Wmoney;
     }
-    
 
 ?>

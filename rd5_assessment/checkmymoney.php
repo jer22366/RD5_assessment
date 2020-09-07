@@ -7,7 +7,7 @@
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name" order by Ddate desc
+      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name" order by Ddate desc limit 8
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     if(isset($_POST["btnback"])){

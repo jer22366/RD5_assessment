@@ -1,0 +1,9 @@
+create table member(idCnum varchar(10) PRIMARY KEY,name varchar(10),account varchar(10),acpassword varchar(20));
+
+INSERT INTO `member`(`Mid`, `name`, `account`, `acpassword`) VALUES ("N123456789","jeff","jwer12345","qwe123456");
+
+create table money(num int PRIMARY key AUTO_INCREMENT,account varchar(15),dpmoney varchar(10),wdmoney varchar(10),balance int(15),Ddate varchar(15))
+
+
+
+
