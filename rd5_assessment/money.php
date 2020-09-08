@@ -57,14 +57,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">存款</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form>
                     存入多少錢：<input type="text" name="欄位名稱" id="save">
                 </form>
+                <div id='deposit'></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
@@ -79,8 +78,6 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="withdrawalmodalLabel">提款</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
@@ -88,7 +85,7 @@
                 <form>
                     取出多少錢：<input type="text" name="欄位名稱" id="withdrawl">
                 </form>
-                
+                <div id='withdrawal'></div>
             </div>
 
             <div class="modal-footer">
@@ -105,9 +102,11 @@
 		$('#savemoney').click(function(){
             let money=$("#save").val()
                 if(money<1000){
-                    alert("存款金額需超過1000元")
+                    $("#deposit").css("color","red")
+                    $("#deposit").html("存款金額需超過1000元")
                 }else if(money>30000){
-                    alert("存款金額不能超過30000元")
+                    $("#deposit").css("color","red")
+                    $("#deposit").html("存款金額不能超過30000元");
                 }else{
                     $.ajax({
                     type:"POST",
@@ -116,30 +115,32 @@
                         "value":money
                         }
                     }).then(function(e){
-                        alert(e)
-                        window.location.reload(); 
+                        $("#deposit").html(e);
+                        setTimeout(function(){ window.location.reload() }, 1000);
                     })   
                 }      
         })
         $('#withdrawalmoney').click(function(){
            let withdrawalmoney=$("#withdrawl").val()
                if(withdrawalmoney<1000){
-                   alert("取出金額需超過1000元")
+                    $("#withdrawal").css("color","red")
+                    $("#withdrawal").html("取出金額需超過1000元")
                }else if(withdrawalmoney>30000){
-                   alert("取出金額不能超過30000元")
+                    $("#withdrawal").css("color","red")
+                    $("#withdrawal").html("取出金額不能超過30000元")
                }else{
-                   $.ajax({
-                   type:"POST",
-                   url:"moneyfunction.php",
-                   data:{
+                    $.ajax({
+                    type:"POST",
+                    url:"moneyfunction.php",
+                    data:{
                        "withdrawalvalue":withdrawalmoney,
                        }
-                   }).then(function(e){
-                       alert(e)
-                       window.location.reload(); 
-                   })  
-               }      
-       })
+                    }).then(function(e){
+                        $("#withdrawal").html(e);
+                        setTimeout(function(){ window.location.reload() }, 1000);
+                    })  
+                }      
+        })
        $('#btncheckmymoney').click(function(){
             window.location.href="checkmymoney.php"
        })

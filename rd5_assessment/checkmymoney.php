@@ -7,7 +7,7 @@
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name" order by Ddate desc limit 8
+      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name" and Ddate in (Ddate,date_sub(Ddate,interval 15 day)) order by Ddate desc limit 15
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     if(isset($_POST["btnback"])){
@@ -24,15 +24,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- <script src="scripts/jquery-1.9.1.min.js"></script>
-  <script src="scripts/jquery.mobile-1.3.2.min.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </head>
 
 <body>
 <div class="container"> 
 <form method="POST">
   <div class="form-inline col-12" >
-      <h2 class=col-10>帳戶記錄</h2>
+      <h2 class=col-9>帳戶記錄</h2>
+      <!-- <button name="halfmon" type="submit" class="btn btn-primary  btn-info col-1.5">半個月紀錄</button>
+      <button name="onemon" type="submit" class="btn btn-primary  btn-info col-1.5">1個月紀錄</button> -->
+      
   </div>
 </form>
   <table class="table table-hover">
@@ -73,4 +75,5 @@
   </div>
 </div>
 </body>
+
 </html>

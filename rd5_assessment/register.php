@@ -1,10 +1,13 @@
 <?php
     require_once ("config.php");
     
+    if(isset($_POST["btnlogin"])){
+      header("location:login.php");
+    }
+
     if(isset($_POST["btnback"])){
       header("location: index.php");
     }
-    
 ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
@@ -37,11 +40,12 @@
   <div class="form-group row">
     <label for="password" class="col-1 col-form-label">密碼</label> 
     <div class="col-3">
-      <input id="password" name="password" type="text" class="form-control">
+      <input id="password" name="password" type="password" class="form-control">
     </div>
   </div> 
   <div class="form-group row">
     <div class="offset-1 col-8">
+      <button name="btnlogin" type="submit" class="btn btn-primary" >登入</button>
       <button name="button" type="submit" class="btn btn-primary" id="btnok">註冊</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
       <button name="btnback" type="submit" class="btn btn-primary">返回</button>

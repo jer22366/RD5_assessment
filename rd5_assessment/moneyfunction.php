@@ -5,7 +5,7 @@
     
     session_start();
     $name=$_SESSION["user"];
-    if(isset($_POST["value"])){
+    if(isset($_POST["value"])){//存款
        $getid = <<<sqlcommand
           select idCnum from member;
        sqlcommand;
@@ -22,7 +22,6 @@
           $depositsql = <<<sqlcommand
             INSERT INTO `money`(`account`,`idCnum`, `dpmoney`,`Ddate`,balance) VALUES ("$name","$idC[idCnum]",$deposit,"$gdate[date]",$Balance+$deposit);
           sqlcommand;
-          echo "$depositsql";
           $result = mysqli_query ( $link, $depositsql );
           echo "存款成功";
         }
@@ -30,7 +29,8 @@
       
     }
 
-    if(isset($_POST["withdrawalvalue"])){
+
+    if(isset($_POST["withdrawalvalue"])){ //提款
       $withdrawal=$_POST["withdrawalvalue"];
       if(is_numeric($withdrawal)){
           if($Balance>=$withdrawal){
@@ -55,7 +55,9 @@
       } 
       
   }
-  if(isset($_POST["Accvalue"]) && isset($_POST["Passvalue"])){
+
+
+  if(isset($_POST["Accvalue"]) && isset($_POST["Passvalue"])){ //登入
         session_start();
         $username=$_POST["Accvalue"];
         $userpass=$_POST["Passvalue"];
@@ -79,26 +81,32 @@
           }
         }
   }
-  if(isset($_POST["idvalue"]) && isset($_POST["namevalue"]) && isset($_POST["RAccvalue"]) && isset($_POST["RPassvalue"])){
+
+
+  if(isset($_POST["idvalue"]) && isset($_POST["namevalue"]) && isset($_POST["RAccvalue"]) && isset($_POST["RPassvalue"])){ //註冊 
     $patternid="/[A-Z][12]\d{8}/";
     $checkid=$_POST["idvalue"]; $Name=$_POST["namevalue"]; $Account=$_POST["RAccvalue"]; $Password=$_POST["RPassvalue"];
             if(preg_match($patternid, $checkid, $matches)){
                 $cID=$checkid; 
-                $thesame = <<<sqlcommand
-                    select account,acpassword from member;
+                $thesameAcc = <<<sqlcommand
+                    select account from member where account="$Account";
                 sqlcommand;
-                $sameidC = mysqli_fetch_assoc(mysqli_query ( $link, $thesame ));
+                $thesamePass = <<<sqlcommand
+                    select acpassword from member where acpassword="$Password";
+                sqlcommand;
+                $sameidC = mysqli_fetch_assoc(mysqli_query ( $link, $thesameAcc ));
+                $samePass = mysqli_fetch_assoc(mysqli_query ( $link, $thesamePass ));
+                
                 if($sameidC["account"]==$Account){
                   echo "帳號相同";
                 }
-                else if($sameidC["acpassword"]==$Password){
+                else if($samePass["acpassword"]==$Password){
                   echo "密碼相同";
                 }else{
                   $commandText = <<<sqlcommand
                       INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
                   sqlcommand;
                   $result = mysqli_query ( $link, $commandText );
-                  $href=1;
                   echo "註冊成功";
                 }    
             }else{
