@@ -73,7 +73,22 @@
               echo "密碼錯誤";    
           }
         }
-        
+  }
+  if(isset($_POST["idvalue"]) && isset($_POST["namevalue"]) && isset($_POST["RAccvalue"]) && isset($_POST["RPassvalue"])){
+    $patternid="/[A-Z][12]\d{8}/";
+    $checkid=$_POST["idvalue"]; $Name=$_POST["namevalue"]; $Account=$_POST["RAccvalue"]; $Password=$_POST["RPassvalue"];
+            if(preg_match($patternid, $checkid, $matches)){
+                $cID=$checkid; 
+
+                $commandText = <<<sqlcommand
+                    INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
+                sqlcommand;
+                $result = mysqli_query ( $link, $commandText );
+                echo "註冊成功";
+            }else{
+              echo "身分證字號有錯";
+            }
+            
   }
 ?>
 

@@ -1,25 +1,6 @@
 <?php
     require_once ("config.php");
-    $patternid="/[A-Z][12]\d{8}/";
-    $checkid=$_POST["id"]; $Name=$_POST["name"]; $Account=$_POST["account"]; $Password=$_POST["password"];
-    if(isset($_POST["submit"])){
-        if(!empty($checkid) && !empty($Name) && !empty($Account) && !empty($Password)){
-            if(preg_match($patternid, $checkid, $matches)){
-                $cID=$checkid; 
-            }
-            $link=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(mysqli_connect_error());
-            $result = mysqli_query ( $link, "set names utf8" );
-            mysqli_select_db ( $link, $dbname );
-            $commandText = <<<sqlcommand
-                INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
-            sqlcommand;
-            $result = mysqli_query ( $link, $commandText );
-            header("location: login.php");
-
-            
-        }
-        
-    }
+    
     if(isset($_POST["btnback"])){
       header("location: index.php");
     }
@@ -28,7 +9,7 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <form id="form3" name="form3" method="post" action="register.php" >
   <div class="form-group row">
     <label for="id" class="col-1 col-form-label">身分證字號</label> 
@@ -61,9 +42,36 @@
   </div> 
   <div class="form-group row">
     <div class="offset-1 col-8">
-      <button name="submit" type="submit" class="btn btn-primary">註冊</button>
+      <button name="button" type="submit" class="btn btn-primary" id="btnok">註冊</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
       <button name="btnback" type="submit" class="btn btn-primary">返回</button>
     </div>
   </div>
 </form>
+<script>
+	$(document).ready(function(){
+		$('#btnok').click(function(){
+        let id=$("#id").val()
+        let name=$("#name").val()
+        let acc=$("#account").val()
+        let pass=$("#password").val()
+        if(!id || !name || !acc || !pass){
+            alert("你有沒輸入的東西喔!!")
+        }else{
+            $.ajax({
+              type:"POST",
+              url:"moneyfunction.php",
+              data:{
+                "idvalue":id,
+                "namevalue":name,
+                "RAccvalue":acc,
+                "RPassvalue":pass
+              } 
+            }).then(function(e){
+              alert(e)
+              window.location.href="index.php"; 
+            })   
+        }
+		})     
+  })	
+</script>

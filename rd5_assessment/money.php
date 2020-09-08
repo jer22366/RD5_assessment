@@ -12,8 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -88,20 +88,7 @@
                 <form>
                     取出多少錢：<input type="text" name="欄位名稱" id="withdrawl">
                 </form>
-                <div class=" d-flex flex-row justify-content-center align-items-center col-12">
-                <div class="custom-control custom-radio custom-control-inline col-2">
-                    <input name="radio" id="radio_0" type="radio" class="custom-control-input" value="1000"> 
-                    <label for="radio_0" class="custom-control-label">1000元</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline col-2">
-                    <input name="radio" id="radio_1" type="radio" class="custom-control-input" value="2000"> 
-                    <label for="radio_1" class="custom-control-label">2000元</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline col-2">
-                    <input name="radio" id="radio_2" type="radio" class="custom-control-input" value="5000"> 
-                    <label for="radio_2" class="custom-control-label">5000元</label>
-                </div>
-                </div> 
+                
             </div>
 
             <div class="modal-footer">
@@ -113,16 +100,7 @@
         </div>            
     </body>
     <script>
-    $(function(){
-	    $('input[type="radio"]').on('mousedown',function(evt){
-		    evt.preventDefault();
-		    this.checked=!this.checked;
-	    }).on('mouseup',function(evt){
-		    evt.preventDefault();
-	    }).on('click',function(evt){
-		    evt.preventDefault();
-        });
-    });
+    
     $(document).ready(function(){
 		$('#savemoney').click(function(){
             let money=$("#save").val()
