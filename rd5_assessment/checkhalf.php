@@ -7,17 +7,11 @@
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name"  order by Ddate desc limit 15
+        SELECT * from money where date(Ddate) BETWEEN DATE_SUB(curdate(), INTERVAL 15 DAY) and DATE_SUB(curdate(), INTERVAL 0 DAY)
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
-    if(isset($_POST["btnback"])){
-      header("location: money.php");
-    }
-    if(isset($_POST["halfmon"])){
-      header("location: checkhalf.php");
-    }
-    if(isset($_POST["onemon"])){
-      header("location: checkmon.php");
+    if(isset($_POST["btnbackcheck"])){
+      header("location: checkmymoney.php");
     }
 ?>
 <!DOCTYPE html>
@@ -38,8 +32,6 @@
 <form method="POST">
   <div class="form-inline col-12" >
       <h2 class=col-9>帳戶記錄</h2>
-      <button name="halfmon" type="submit" class="btn btn-primary  btn-info col-1.5">半個月紀錄</button>
-      <button name="onemon" type="submit" class="btn btn-primary  btn-info col-1.5">1個月紀錄</button>
       
   </div>
 </form>
@@ -57,23 +49,26 @@
     <tbody>
     <?php while($row = mysqli_fetch_assoc($result)){?>
         <tr>
-            <td><?php echo $row["num"] ?></td>
+            <td></td>
             <td><?php echo $row["account"] ?></td>
             <td><?php echo $row["dpmoney"] ?></td>
             <td><?php echo $row["wdmoney"] ?></td>
             <td><?php echo $row["Ddate"]  ?></td>
-        
+        <td>
+            <span class="float-right">      
+            </span>
+        </td>
       </tr>
    <?php }?>   
     </tbody>
   </table>
   
 </div>
-<form method="POST" action="checkmymoney.php">
+<form method="POST" >
 <div class="form-group col-12">
 
   <div class=text-center>
-    <button name="btnback" type="submit" class="btn btn-primary">返回</button>
+    <button name="btnbackcheck" type="submit" class="btn btn-primary">返回</button>
             
   </div>
 </div>

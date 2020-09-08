@@ -46,7 +46,7 @@
             let acc=$("#txtUserName").val()
 			let pass=$("#txtPassword").val()
 			if(!acc || !pass){
-				alert("帳號或密碼不能為空")
+				alert("帳號或密碼不能為空");
 			}else{
 				$.ajax({
                 	type:"POST",
