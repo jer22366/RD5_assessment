@@ -22,6 +22,7 @@
           $depositsql = <<<sqlcommand
             INSERT INTO `money`(`account`,`idCnum`, `dpmoney`,`Ddate`,balance) VALUES ("$name","$idC[idCnum]",$deposit,"$gdate[date]",$Balance+$deposit);
           sqlcommand;
+          echo "$depositsql";
           $result = mysqli_query ( $link, $depositsql );
           echo "存款成功";
         }
@@ -83,12 +84,23 @@
     $checkid=$_POST["idvalue"]; $Name=$_POST["namevalue"]; $Account=$_POST["RAccvalue"]; $Password=$_POST["RPassvalue"];
             if(preg_match($patternid, $checkid, $matches)){
                 $cID=$checkid; 
-
-                $commandText = <<<sqlcommand
-                    INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
+                $thesame = <<<sqlcommand
+                    select account,acpassword from member;
                 sqlcommand;
-                $result = mysqli_query ( $link, $commandText );
-                echo "註冊成功";
+                $sameidC = mysqli_fetch_assoc(mysqli_query ( $link, $thesame ));
+                if($sameidC["account"]==$Account){
+                  echo "帳號相同";
+                }
+                else if($sameidC["acpassword"]==$Password){
+                  echo "密碼相同";
+                }else{
+                  $commandText = <<<sqlcommand
+                      INSERT INTO `member`(`idCnum`, `name`, `account`, `acpassword`) VALUES ("$cID","$Name","$Account","$Password");
+                  sqlcommand;
+                  $result = mysqli_query ( $link, $commandText );
+                  $href=1;
+                  echo "註冊成功";
+                }    
             }else{
               echo "身分證字號有錯";
             }

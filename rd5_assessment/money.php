@@ -143,6 +143,7 @@
        $('#btncheckmymoney').click(function(){
             window.location.href="checkmymoney.php"
        })
+       
 	})
 </script>
 </html>
