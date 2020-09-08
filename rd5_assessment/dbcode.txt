@@ -5,5 +5,11 @@ INSERT INTO `member`(`Mid`, `name`, `account`, `acpassword`) VALUES ("N123456789
 create table money(num int PRIMARY key AUTO_INCREMENT,account varchar(15),dpmoney varchar(10),wdmoney varchar(10),balance int(15),Ddate varchar(15))
 
 
+ALTER TABLE `money` ADD `idCnum` VARCHAR(15) NOT NULL AFTER `num`;
 
 
+
+
+
+ALTER TABLE `money` CHANGE `dpmoney` `dpmoney` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0';
+ALTER TABLE `money` CHANGE `wdmoney` `wdmoney` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0';

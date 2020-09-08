@@ -143,9 +143,6 @@
        $('#btncheckmymoney').click(function(){
             window.location.href="checkmymoney.php"
        })
-       $('#btndeposithide').click(function(){
-            document.getElementById()
-       })
 	})
 </script>
 </html>
