@@ -10,9 +10,27 @@
     }
 ?>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Document</title>
+<style>
+  body {
+  background-color: lightblue;
+}
+form{
+  position: relative;
+  top: 20px;
+  right: -450px;
+}
+</style>
+</head>
+<body>
 <form id="form3" name="form3" method="post" action="register.php" >
   <div class="form-group row">
     <label for="id" class="col-1 col-form-label">身分證字號</label> 
@@ -52,6 +70,8 @@
     </div>
   </div>
 </form>
+</body>
+</html>
 <script>
 	$(document).ready(function(){
 		$('#btnok').click(function(){

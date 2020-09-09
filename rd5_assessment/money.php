@@ -14,10 +14,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel=stylesheet type="text/css" href="main.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<title>Lag - Member Page</title>
+<title>會員</title>
+<style>
+body {
+  background-color: lightblue;
+}
+form{
+  position: relative;
+  top: 20px;
+  
+}
+</style>
 </head>
     <body>
         <form id="form2" name="form2" method="POST">
@@ -43,7 +54,6 @@
                     <button type="button" class="" data-toggle="modal" data-target="#exampleModal">存款</button>
                     <button type="button" class="" data-toggle="modal" data-target="#withdrawalmodal">提款</button>
                     <button type="button" name="btncheckmymoney" id="btncheckmymoney" >查詢明細</button>
-                    <!-- <button type="submit" name="btncheckbalance" id="btncheckbalance"> 查詢餘額 </button> -->
                     <button type="submit" name="btnlogout" id="btnlogout"> 登出 </button>
                     
                     

@@ -11,14 +11,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>網路銀行</title>
-
-
+<style>
+body {
+  background-color: lightblue;
+}
+div{
+  position: relative;
+  top: 30px;
+  right: 0px;
+  
+}
+</style>
 </head>
+
 <body>
   <div>
     <table width="300" border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#F2F2F2">
       <tr width="300">
-        <td   align="center" bgcolor="#CCCCCC"><font color="black">歡迎光臨網路銀行 </font></td>
+        <td   align="center" bgcolor="#C0C0C0"><font color="black">歡迎光臨網路銀行 </font><img src="./images/bank.png"></td>
+        
       </tr>
       <tr>
       <?php if($user=="guest"){?>

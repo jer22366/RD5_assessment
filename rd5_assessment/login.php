@@ -11,6 +11,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <title>登入</title>
+<style>
+body {
+  background-color: lightblue;
+}
+form{
+  position: relative;
+  top: 180px;
+  right: 0px;
+  
+}
+</style>
 </head>
 <body>
 	<form id="form1" name="form1" method="post">
@@ -33,7 +44,7 @@
 			<tr>
 				
 				<td colspan="2" align="center" bgcolor="#CCCCCC">
-					<div id='text'></div>	<input
+					<div id='text' class="message"></div>	<input
 					type="button" name="btnOK" id="btnOK" value="登入" /> <input
 					type="reset" name="btnReset" id="btnReset" value="重設" /> <input
 					type="button" name="btnHome" id="btnHome" value="回首頁" />
@@ -49,7 +60,8 @@
             let acc=$("#txtUserName").val()
 			let pass=$("#txtPassword").val()
 			if(!acc || !pass){
-				alert("帳號或密碼不能為空");
+				$("#text").css("color","red")
+				$("#text").html("帳號或密碼不能為空");
 			}else{
 				$.ajax({
                 	type:"POST",
@@ -60,9 +72,8 @@
                         }
                     }).then(function(e){
 						$("#text").css("color","red")
-                        $("#text").html(e)
-						setTimeout(function(){ window.location.href="index.php" }, 1000);
-						
+						$("#text").html(e);
+							 setTimeout(function(){ window.location.href="index.php";  }, 1000);
                     })   
 			}
 		})     
