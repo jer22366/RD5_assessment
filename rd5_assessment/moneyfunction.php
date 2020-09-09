@@ -74,7 +74,7 @@
               $_SESSION["user"]=$username;
               $_SESSION["pass"]=$userpass;
               $_SESSION["idcnum"]=$row["idCnum"];
-              echo "登入成功";
+              echo "登入成功即將跳轉頁面";
             }
             else{
               echo "帳號或密碼錯誤";    

@@ -7,7 +7,7 @@
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-        SELECT * from money where date(Ddate) BETWEEN DATE_SUB(curdate(), INTERVAL 30 DAY) and DATE_SUB(curdate(), INTERVAL 0 DAY)
+        SELECT * from money where date(Ddate) BETWEEN DATE_SUB(curdate(), INTERVAL 30 DAY) and DATE_SUB(curdate(), INTERVAL 0 DAY) order by Ddate desc
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     if(isset($_POST["btnback"])){

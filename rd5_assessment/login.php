@@ -31,13 +31,16 @@
 					id="txtPassword" /></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" bgcolor="#CCCCCC"><input
-					type="submit" name="btnOK" id="btnOK" value="登入" /> <input
+				
+				<td colspan="2" align="center" bgcolor="#CCCCCC">
+					<div id='text'></div>	<input
+					type="button" name="btnOK" id="btnOK" value="登入" /> <input
 					type="reset" name="btnReset" id="btnReset" value="重設" /> <input
 					type="button" name="btnHome" id="btnHome" value="回首頁" />
 				</td>
 			</tr>
 		</table>
+		
 	</form>
 </body>
 <script>
@@ -56,8 +59,10 @@
 						"Passvalue":pass
                         }
                     }).then(function(e){
-                        alert(e)
-						window.location.href="index.php"; 
+						$("#text").css("color","red")
+                        $("#text").html(e)
+						setTimeout(function(){ window.location.href="index.php" }, 1000);
+						
                     })   
 			}
 		})     
