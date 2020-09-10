@@ -28,6 +28,11 @@ form{
   top: 20px;
   
 }
+#show{
+    position: relative;
+    top: 40px;
+    left:50px;
+}
 </style>
 </head>
     <body>
@@ -54,14 +59,14 @@ form{
                     <button type="button" class="" data-toggle="modal" data-target="#exampleModal">存款</button>
                     <button type="button" class="" data-toggle="modal" data-target="#withdrawalmodal">提款</button>
                     <button type="button" class="" data-toggle="modal" data-target="#transfermodal">轉帳</button>
-                    <button type="button" name="btncheckmymoney" id="btncheckmymoney" >查詢明細</button>
-                    <button type="submit" name="btnlogout" id="btnlogout"> 登出 </button>
-                    
-                    
+                    <button type="button" class="" data-toggle="modal" data-target="#checkmoneyModal">查詢明細</button>
+                    <button type="submit" name="btnlogout" id="btnlogout"> 登出 </button>  
                 </td>
             </tr>
             </table>
-        </form> 
+            
+        </form>
+        <div id='show'></div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
@@ -132,7 +137,31 @@ form{
             </div>
             </div>
         </div>
-        </div>                  
+        </div> 
+
+
+        <div class="modal fade" id="checkmoneyModal" tabindex="-1" role="dialog" aria-labelledby="checkmoneyModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkmoneyModalLabel">交易明細</h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <button type="button" class="btn btn-primary" id="btnall" >全部</button>
+                    <button type="button" class="btn btn-primary" id="btnmon" >一個月</button>
+                    <button type="button" class="btn btn-primary" id="btnhalf" >半個月</button>
+                    
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+            </div>
+        </div>
+        </div>                 
     </body>
     <script>
     
@@ -181,8 +210,32 @@ form{
                     })  
                 }      
         })
-       $('#btncheckmymoney').click(function(){
-            window.location.href="checkmymoney.php"
+       $('#btnall').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"checkmymoney.php",
+            }).then(function(e){
+               $("#show").html(e)
+            })
+            
+       })
+       $('#btnmon').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"checkmon.php",
+            }).then(function(e){
+               $("#show").html(e)
+            })
+            
+       })
+       $('#btnhalf').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"checkhalf.php",
+            }).then(function(e){
+               $("#show").html(e)
+            })
+            
        })
 
        $('#btntransfermoney').click(function(){
@@ -210,11 +263,7 @@ form{
                             $("#tranfertext").css("color","red")
                             $("#tranfertext").html("轉帳成功")
                             setTimeout(function(){ window.location.reload() }, 1000);  
-                        }
-                           
-                        
-                                         
-                        
+                        }  
                     })  
                 }      
         })

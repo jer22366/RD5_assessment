@@ -34,12 +34,6 @@
 
 <body>
 <div class="container"> 
-<form method="POST">
-  <div class="form-inline col-12" >
-      <h2 class=col-9>帳戶記錄</h2>
-      
-  </div>
-</form>
   <table class="table table-hover">
     <thead>
 
@@ -75,7 +69,7 @@
 <div class="form-group col-12">
 
   <div class=text-center>
-    <button name="btnback" type="submit" class="btn btn-primary">返回</button>
+    <button name="btnback" type="submit" class="btn btn-primary">清空</button>
             
   </div>
 </div>

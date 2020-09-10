@@ -1,4 +1,5 @@
 <?php
+
     require_once ("config.php");
     session_start();
     $idcnum=$_SESSION["idcnum"];
@@ -10,15 +11,7 @@
       select account, wdmoney,dpmoney,type,tranmoney,Ddate from money  where account="$name"  order by Ddate desc limit 15
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
-    if(isset($_POST["btnback"])){
-      header("location: money.php");
-    }
-    if(isset($_POST["halfmon"])){
-      header("location: checkhalf.php");
-    }
-    if(isset($_POST["onemon"])){
-      header("location: checkmon.php");
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,14 +33,6 @@ body {
 
 <body>
 <div class="container"> 
-<form method="POST">
-  <div class="form-inline col-12" >
-      <h2 class=col-9>帳戶記錄</h2>
-      <button name="halfmon" type="submit" class="btn btn-primary  btn-warning col-1.5">半個月紀錄</button>
-      <button name="onemon" type="submit" class="btn btn-primary  btn-warning col-1.5">1個月紀錄</button>
-      
-  </div>
-</form>
   <table class="table table-hover">
     <thead>
 
@@ -78,11 +63,11 @@ body {
   </table>
   
 </div>
-<form method="POST" action="checkmymoney.php">
+<form method="POST" >
 <div class="form-group col-12">
 
   <div class=text-center>
-    <button name="btnback" type="submit" class="btn btn-primary">返回</button>
+    <button name="btnback" type="submit" class="btn btn-primary">清空</button>
             
   </div>
 </div>
