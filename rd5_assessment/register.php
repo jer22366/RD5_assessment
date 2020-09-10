@@ -1,5 +1,4 @@
 <?php
-    require_once ("config.php");
     
     if(isset($_POST["btnlogin"])){
       header("location:login.php");
@@ -31,7 +30,7 @@ form{
 </style>
 </head>
 <body>
-<form id="form3" name="form3" method="post" action="register.php" >
+<form id="form3" name="form3" method="post">
   <div class="form-group row">
     <label for="id" class="col-1 col-form-label">身分證字號</label> 
     <div class="col-3">
@@ -60,13 +59,16 @@ form{
     <div class="col-3">
       <input id="password" name="password" type="password" class="form-control">
     </div>
+    
   </div> 
+  
   <div class="form-group row">
     <div class="offset-1 col-8">
       <button name="btnlogin" type="submit" class="btn btn-primary" >登入</button>
-      <button name="button" type="submit" class="btn btn-primary" id="btnok">註冊</button>
+      <button name="button" type="button" class="btn btn-primary" id="btnok">註冊</button>
       <button name="btnreset" type="reset" class="btn btn-primary">重設</button>
       <button name="btnback" type="submit" class="btn btn-primary">返回</button>
+      <div id='registertext'></div>
     </div>
   </div>
 </form>
@@ -80,7 +82,8 @@ form{
         let acc=$("#account").val()
         let pass=$("#password").val()
         if(!id || !name || !acc || !pass){
-            alert("你有沒輸入的東西喔!!")
+            $("#registertext").css("color","red")
+            $("#registertext").html("你有沒輸入的東西喔!!")
         }else{
             $.ajax({
               type:"POST",
@@ -91,9 +94,23 @@ form{
                 "RAccvalue":acc,
                 "RPassvalue":pass
               } 
-            }).then(function(e){
-              alert(e)
-              window.location.href="index.php"; 
+            }).then(function(register){
+              if(register==0){
+                  $("#registertext").css("color","red")
+                  $("#registertext").html("帳號相同")
+              }else if(register==1){
+                  $("#registertext").css("color","red")
+                  $("#registertext").html("密碼相同")
+              }
+              else if(register==2){
+                  $("#registertext").css("color","red")
+                  $("#registertext").html("註冊成功")
+                  setTimeout(function(){ window.location.href="index.php";  }, 1000);
+              }else{
+                  $("#registertext").css("color","red")
+                  $("#registertext").html("身分證字號有錯")
+              }
+              
             })   
         }
 		})     

@@ -53,6 +53,7 @@ form{
                 <td colspan="2" align="center" bgcolor="#CCCCCC">
                     <button type="button" class="" data-toggle="modal" data-target="#exampleModal">存款</button>
                     <button type="button" class="" data-toggle="modal" data-target="#withdrawalmodal">提款</button>
+                    <button type="button" class="" data-toggle="modal" data-target="#transfermodal">轉帳</button>
                     <button type="button" name="btncheckmymoney" id="btncheckmymoney" >查詢明細</button>
                     <button type="submit" name="btnlogout" id="btnlogout"> 登出 </button>
                     
@@ -72,8 +73,9 @@ form{
             <div class="modal-body">
                 <form>
                     存入多少錢：<input type="text" name="欄位名稱" id="save">
+                    <div id='deposit'></div>
                 </form>
-                <div id='deposit'></div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
@@ -94,8 +96,9 @@ form{
             <div class="modal-body">
                 <form>
                     取出多少錢：<input type="text" name="欄位名稱" id="withdrawl">
+                    <div id='withdrawal'></div>
                 </form>
-                <div id='withdrawal'></div>
+                
             </div>
 
             <div class="modal-footer">
@@ -104,7 +107,32 @@ form{
             </div>
             </div>
         </div>
-        </div>            
+        </div>
+
+        <div class="modal fade" id="transfermodal" tabindex="-1" role="dialog" aria-labelledby="transfermodalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transfermodalLabel">轉帳</h5>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    轉入帳號：<input type="text" name="欄位名稱" id="transferaccount"><br>
+                    轉入金額：<input type="text" name="欄位名稱" id="transfermoney"><br>
+                    <div id='tranfertext'></div>
+                </form>
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" id="btntransfermoney">確定</button>
+            </div>
+            </div>
+        </div>
+        </div>                  
     </body>
     <script>
     
@@ -125,6 +153,7 @@ form{
                         "value":money
                         }
                     }).then(function(e){
+                        $("#deposit").css("color","red")
                         $("#deposit").html(e);
                         setTimeout(function(){ window.location.reload() }, 1000);
                     })   
@@ -146,6 +175,7 @@ form{
                        "withdrawalvalue":withdrawalmoney,
                        }
                     }).then(function(e){
+                        $("#withdrawal").css("color","red")
                         $("#withdrawal").html(e);
                         setTimeout(function(){ window.location.reload() }, 1000);
                     })  
@@ -154,7 +184,40 @@ form{
        $('#btncheckmymoney').click(function(){
             window.location.href="checkmymoney.php"
        })
-       
+
+       $('#btntransfermoney').click(function(){
+           let Taccount=$("#transferaccount").val()
+           let Tmoney=$("#transfermoney").val()
+               if(Tmoney<1000){
+                    $("#tranfertext").css("color","red")
+                    $("#tranfertext").html("轉入金額需超過1000元")
+               }else if(Tmoney>30000){
+                    $("#tranfertext").css("color","red")
+                    $("#tranfertext").html("轉入金額不能超過30000元")
+               }else{
+                    $.ajax({
+                    type:"POST",
+                    url:"moneyfunction.php",
+                    data:{
+                       "transfermoney":Tmoney,
+                       "transferaccount":Taccount
+                       }
+                    }).then(function(transfer){
+                        if(transfer == 0){
+                            $("#tranfertext").css("color","red")
+                            $("#tranfertext").html("轉入帳號錯誤")  
+                        }else if(transfer == 1){
+                            $("#tranfertext").css("color","red")
+                            $("#tranfertext").html("轉帳成功")
+                            setTimeout(function(){ window.location.reload() }, 1000);  
+                        }
+                           
+                        
+                                         
+                        
+                    })  
+                }      
+        })
 	})
 </script>
 </html>

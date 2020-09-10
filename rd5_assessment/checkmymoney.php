@@ -7,7 +7,7 @@
     $dpdate=date("Y-m-d");
     
     $commandText = <<<sqlcommand
-      select e.account, wdmoney,dpmoney,Ddate from money e join member f on e.account=f.account where e.account="$name"  order by Ddate desc limit 15
+      select account, wdmoney,dpmoney,type,tranmoney,Ddate from money  where account="$name"  order by Ddate desc limit 15
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     if(isset($_POST["btnback"])){
@@ -43,8 +43,8 @@ body {
 <form method="POST">
   <div class="form-inline col-12" >
       <h2 class=col-9>帳戶記錄</h2>
-      <button name="halfmon" type="submit" class="btn btn-primary  btn-info col-1.5">半個月紀錄</button>
-      <button name="onemon" type="submit" class="btn btn-primary  btn-info col-1.5">1個月紀錄</button>
+      <button name="halfmon" type="submit" class="btn btn-primary  btn-warning col-1.5">半個月紀錄</button>
+      <button name="onemon" type="submit" class="btn btn-primary  btn-warning col-1.5">1個月紀錄</button>
       
   </div>
 </form>
@@ -52,20 +52,24 @@ body {
     <thead>
 
       <tr>
-        <th></th>
+        
         <th>帳號</th>
         <th>存款</th>
         <th>提款</th>
+        <th>轉帳</th>
+        <th>轉帳金額</th>
         <th>日期</th>
       </tr>
     </thead>
     <tbody>
     <?php while($row = mysqli_fetch_assoc($result)){?>
         <tr>
-            <td><?php echo $row["num"] ?></td>
+            
             <td><?php echo $row["account"] ?></td>
             <td><?php echo $row["dpmoney"] ?></td>
             <td><?php echo $row["wdmoney"] ?></td>
+            <td><?php echo $row["type"]?></td>
+            <td><?php echo $row["tranmoney"]?></td>
             <td><?php echo $row["Ddate"]  ?></td>
         
       </tr>

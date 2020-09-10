@@ -70,10 +70,19 @@ form{
                         "Accvalue":acc,
 						"Passvalue":pass
                         }
-                    }).then(function(e){
-						$("#text").css("color","red")
-						$("#text").html(e);
-							 setTimeout(function(){ window.location.href="index.php";  }, 1000);
+                    }).then(function(login){
+						if(login==0){
+							$("#text").css("color","red")
+							$("#text").html("帳號或密碼錯誤");
+						}else if(login==1){
+							$("#text").css("color","red")
+							$("#text").html("登入成功即將跳轉頁面");
+							setTimeout(function(){ window.location.href="index.php";  }, 1000);
+						}else{
+							$("#text").css("color","red")
+							$("#text").html("帳號或密碼錯誤");
+							
+						}
                     })   
 			}
 		})     

@@ -44,20 +44,22 @@
     <thead>
 
       <tr>
-        <th></th>
         <th>帳號</th>
         <th>存款</th>
         <th>提款</th>
+        <th>轉帳</th>
+        <th>轉帳金額</th>
         <th>日期</th>
       </tr>
     </thead>
     <tbody>
     <?php while($row = mysqli_fetch_assoc($result)){?>
         <tr>
-            <td></td>
             <td><?php echo $row["account"] ?></td>
             <td><?php echo $row["dpmoney"] ?></td>
             <td><?php echo $row["wdmoney"] ?></td>
+            <td><?php echo $row["type"]?></td>
+            <td><?php echo $row["tranmoney"]?></td>
             <td><?php echo $row["Ddate"]  ?></td>
         <td>
             <span class="float-right">      
