@@ -34,7 +34,7 @@ div{
       <tr>
       <?php if($user=="guest"){?>
         <td align="center" valign="baseline"><a href="login.php">登入 </a>
-        ｜<a href="register.php">註冊 </a>
+        <a href="register.php">註冊 </a>
       <?php }else {?>
         <td align="center" valign="baseline"><a href="login.php?login=1">登出 </a>| <a href="money.php">會員資訊</a></td>
       <?php }?> 

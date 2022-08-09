@@ -9,8 +9,8 @@
     sqlcommand;
     $result = mysqli_query ( $link, $commandText );
     
-    $Balance=0;
-    while($row = mysqli_fetch_assoc ( $result )){
+    $Balance = 0;
+    while($row = mysqli_fetch_assoc ($result)){
         $Dmoney=$row["dpmoney"];
         $Wmoney=$row["wdmoney"];
         $Balance=$row["balance"];

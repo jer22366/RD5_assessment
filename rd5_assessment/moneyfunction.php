@@ -20,7 +20,7 @@
           $gdate= mysqli_fetch_assoc($result);
           $type="In";
           $depositsql = <<<sqlcommand
-            INSERT INTO `money`(`account`,`idCnum`, `dpmoney`,`Ddate`,balance,type) VALUES ("$name","$idC[idCnum]",$deposit,"$gdate[date]",$Balance+$deposit,"$type");
+            INSERT INTO `money`(`account`,`idCnum`,`dpmoney`,`Ddate`,balance,type) VALUES ("$name","$idC[idCnum]",$deposit,"$gdate[date]",$Balance+$deposit,"$type");
           sqlcommand;
           $result = mysqli_query ( $link, $depositsql );
           echo "存款成功";
